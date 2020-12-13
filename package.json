@@ -1,10 +1,11 @@
 {
-  "name": "newBlogs",
+  "name": "newblogs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/Damarowen/newBlogs/issues"
   },
-  "homepage": "https://github.com/Damarowen/newBlogs#readme"
+  "homepage": "https://github.com/Damarowen/newBlogs#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.7"
+  }
 }
