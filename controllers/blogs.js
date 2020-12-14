@@ -1,6 +1,9 @@
 const Blogs = require('../models/blogs')
 
 
+
+
+
 // @desc GET ALL BLOGS
 // @route GET /blogs/
 // @access Public
@@ -50,7 +53,7 @@ exports.showBlog = async (req, res, next) => {
 // @access PRIVATE
 
 exports.renderNewBlog = async (req, res, next) => {
-   res.render('./blogs/new')
+    res.render('./blogs/new')
 }
 
 
@@ -60,11 +63,12 @@ exports.renderNewBlog = async (req, res, next) => {
 
 exports.newBlog = async (req, res, next) => {
     try {
-    await Blogs.create(req.body)
-
-       res.redirect('/blogs')
-        }
-     catch (err) {
+        const file =`uploads/${req.file.filename}`
+        const blog = new Blogs(req.body)
+        blog.image = file
+        await blog.save();
+        res.redirect('/blogs')
+    } catch (err) {
         console.error(err)
     }
 }

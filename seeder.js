@@ -1,5 +1,4 @@
 const fs = require('fs');
-const mongoose = require('mongoose')
 const connectDB = require('./config/db');
 
 const Blogs = require('./models/blogs')
@@ -24,7 +23,6 @@ const importData = async () =>{
         console.error(err)
     }
 }
-
 
 
 const deleteData = async () =>{

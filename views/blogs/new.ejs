@@ -2,44 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=`, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=`, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <h1>New Post</h1>
-        <div class="row center">
+  <div class="container">
+    <h1>New Post</h1>
+    <div class="row center">
 
-<form action="/blogs" method="POST">
-  <div class="input-field col s12">
-    <input  name="title" type="text" id="title" class="validate">
-    <label for="title">Title</label>
-  </div>
-  <div class="input-field col s12">
-    <input  name="image" type="text" id="image" class="validate">
-    <label for="image" data-error="wrong" data-success="right">Image</label>
-  </div>
-  <div class="input-field col s12">
-    <input  name="description"  type="text" id="description" class="validate">
-    <label for="description">Description</label>
-  </div>
-  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-      <i class="material-icons right">send</i>
-  </button>
-</form>
-
+      <form action="/blogs" method="POST" enctype="multipart/form-data">
+        <div class="input-field col s12">
+          <input name="title" type="text" id="title" class="validate">
+          <label for="title">Title</label>
         </div>
+        <div class="input-field col s12">
+           <div class="file-field input-field">
+              <div class="btn pink">
+                <span>File</span>
+                <input type="file" name="image">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+        </div>
+        <div class="input-field col s12">
+          <input name="description" type="text" id="description" class="validate">
+          <label for="description">Description</label>
+        </div>
+        <a href="/blogs" class="btn pink"> Back </a>
+        <button class="btn waves-effect waves-light pink" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+
     </div>
+  </div>
 
 </body>
 

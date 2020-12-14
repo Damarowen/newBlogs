@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const app = express();
 const mongoose = require("mongoose");
 const connectDB = require('./config/db');
@@ -6,6 +7,8 @@ const PORT = 5000;
 const methodOverride = require("method-override")
 const bodyParser = require("body-parser");
 
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose.set('useFindAndModify', false);//supaya ga error untuk findByidAndUpdate nya
 
