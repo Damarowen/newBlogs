@@ -17,20 +17,20 @@
 
 <body>
     <div class="container">
-        <h1>Edit Post</h1>
+        <h1>New Post</h1>
         <div class="row center">
 
-<form action="/blogs/<%= query._id %>?_method=PUT" method="POST">
+<form action="/blogs" method="POST">
   <div class="input-field col s12">
-    <input value="<%= query.title %> " name="title" type="text" id="title" class="validate">
+    <input  name="title" type="text" id="title" class="validate">
     <label for="title">Title</label>
   </div>
   <div class="input-field col s12">
-    <input value="<%= query.image %>" name="image" type="text" id="image" class="validate">
+    <input  name="image" type="text" id="image" class="validate">
     <label for="image" data-error="wrong" data-success="right">Image</label>
   </div>
   <div class="input-field col s12">
-    <input value="<%= query.description %> " name="description"  type="text" id="description" class="validate">
+    <input  name="description"  type="text" id="description" class="validate">
     <label for="description">Description</label>
   </div>
   <button class="btn waves-effect waves-light" type="submit" name="action">Submit

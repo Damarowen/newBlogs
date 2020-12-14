@@ -46,37 +46,38 @@ exports.showBlog = async (req, res, next) => {
 }
 
 
+// @desc render form create blog
+// @access PRIVATE
+
+exports.renderNewBlog = async (req, res, next) => {
+   res.render('./blogs/new')
+}
+
+
 // @desc NEW BLOG
-// @route POST  /blogs/:id
+// @route POST  /blogs/
 // @access PRIVATE
 
 exports.newBlog = async (req, res, next) => {
     try {
-        await Blogs.create(req.body, function (err, data) {
-            if (err) {
-                console.err(err)
-            } else {
-                res.render('./blogs/new', {
-                    query: data
-                })
-            }
-        })
-    } catch (err) {
+    await Blogs.create(req.body)
+
+       res.redirect('/blogs')
+        }
+     catch (err) {
         console.error(err)
     }
 }
 
 
-
-
-// @desc EDIT BLOG
+// @desc Render EDIT BLOG
 // @route GET  /blogs/:id/EDIT
 // @access PRIVATE
 
-exports.editBlog = async (req, res, next) => {
+exports.renderEditBlog = async (req, res, next) => {
     try {
-       const query = await Blogs.findById(req.params.id)
-       await  res.render("./blogs/edit", {
+        const query = await Blogs.findById(req.params.id)
+        await res.render("./blogs/edit", {
             query
         })
     } catch (err) {
