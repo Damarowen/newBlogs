@@ -9,7 +9,6 @@ const bodyParser = require("body-parser");
 
 
 app.use(express.static(path.join(__dirname, 'public')))
-
 mongoose.set('useFindAndModify', false);//supaya ga error untuk findByidAndUpdate nya
 
 app.use(bodyParser.urlencoded({
