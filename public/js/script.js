@@ -1,4 +1,7 @@
 const img = document.querySelector("img");
+const wrapper = document.querySelector(".wrapper");
+const cancel = document.querySelector(".cancel")
+const inputText = document.querySelector("#inputBtn")
 
 
 //This event is triggered each time a file is created, modified, or deleted on a given storage area.
@@ -15,6 +18,15 @@ inputBtn.addEventListener("change", function () {
     const result = reader.result;
     img.src = result;
   }
+
+  //memasang class untuk wrapper
+  wrapper.classList.add("active")
+
+cancel.addEventListener('click', function() {
+  img.src = "";
+  wrapper.classList.remove("active")
+  inputBtn.value = "";
+})
 
   //memanggil property readAsDataUrl
   reader.readAsDataURL(file);

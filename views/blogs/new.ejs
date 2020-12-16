@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs') %> 
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=`, initial-scale=1.0">
-  <title>Document</title>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body>
-  <div class="container">
     <h1>New Post</h1>
     <div class="row center">
 
@@ -24,7 +9,17 @@
           <label for="title">Title</label>
         </div>
         <div class="input-field col s12">
-          <img src="">
+          <div class="wrapper">
+            <div class="content">
+              <i class="material-icons">backup</i>
+              <p>Upload File</p>
+            </div>
+            <img class="responsive-img">
+            <div class="cancel"><span class="material-icons">
+              clear
+            </span></div>
+          </div>
+       
           <div class="file-field input-field">
             <div class="btn">
               <span>File</span>
@@ -46,10 +41,6 @@
       </form>
 
     </div>
-  </div>
 
 
-</body>
-<script type="text/javascript" src="/js/script.js"></script>
-
-</html>
+<%- include('../partials/footer.ejs') %> 

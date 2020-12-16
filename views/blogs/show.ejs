@@ -1,37 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=`, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<h1>Blog Post</h1>
+<div class="row center">
+    <h2 class="text-lg"> <%= query.title %> </h2>
+    <img class="responsive-img" src="<%= query.image %>" alt="">
+    <h2> <%= query.description %> </h2>
+    <h2> <%= query.createdAt.toDateString() %> </h2>
+    <a href="/blogs/" class="waves-effect waves-light btn">Back</a>
+    <a href="/blogs/<%=query._id %>/edit " class="waves-effect waves-light btn">Edit</a>
+    <form style="display: inline;" action="/blogs/<%= query._id %>?_method=DELETE " method="POST">
+        <button class="waves-effect waves-light btn">Delete</button>
+    </form>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
-</head>
+</div>
 
-<body>
-    <div class="container">
-        <h1>Blog Post</h1>
-        <div class="row center">
-            <h2 class="text-lg"> <%= query.title %> </h2>
-            <img class="responsive-img" src="<%= query.image %>" alt="">
-            <h2> <%= query.description %> </h2>
-            <h2> <%= query.createdAt.toDateString() %> </h2>
-            <a href="/blogs/" class="waves-effect waves-light btn">Back</a>
-            <a href="/blogs/<%=query._id %>/edit " class="waves-effect waves-light btn">Edit</a>
-            <form style="display: inline;" action="/blogs/<%= query._id %>?_method=DELETE " method="POST">
-                <button class="waves-effect waves-light btn">Delete</button>
-            </form>
-
-        </div>
-    </div>
-
-</body>
-
-</html>
+<%- include('../partials/footer.ejs') %>

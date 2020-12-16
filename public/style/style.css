@@ -1,0 +1,45 @@
+.wrapper>img {
+    height: 40vh;
+    width: 20vw;
+    border-radius: 10px;
+}
+
+.content>i {
+    font-size: 5em;
+}
+
+.active {
+    display: none
+}
+
+.content {
+    padding: 10vh 0;
+}
+
+.wrapper {
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+    border: 2px dashed #c2cdda;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.cancel {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: gray;
+    cursor: pointer;
+    display: none;
+}
+
+.wrapper.active:hover .cancel {
+display: block;
+}
+
+.wrapper.active .content {
+    display: none;
+}

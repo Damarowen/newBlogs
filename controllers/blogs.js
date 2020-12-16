@@ -63,7 +63,7 @@ exports.renderNewBlog = async (req, res, next) => {
 
 exports.newBlog = async (req, res, next) => {
     try {
-        const file =`uploads/${req.file.filename}`
+        const file = `uploads/${req.file.filename}`
         const blog = new Blogs(req.body)
         blog.image = file
         await blog.save();
@@ -71,6 +71,7 @@ exports.newBlog = async (req, res, next) => {
     } catch (err) {
         console.error(err)
     }
+
 }
 
 
@@ -96,11 +97,13 @@ exports.renderEditBlog = async (req, res, next) => {
 
 exports.updateBlog = async (req, res, next) => {
     try {
-
-        await Blogs.findByIdAndUpdate(req.params.id, req.body, {
+        const file = `uploads/${req.file.filename}`
+        const blog = await Blogs.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
         })
+        blog.image = file
+        await blog.save();
         res.redirect('/blogs')
     } catch (err) {
         console.error(err)

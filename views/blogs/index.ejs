@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=`, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
-</head>
-
-<body>
-    <div class="container">
         <h1>Blog Post</h1>
         <div class="row center">
             <% for(const x of query){ %>
@@ -33,8 +16,5 @@
             <% }   %>
 
         </div>
-    </div>
-
-</body>
-
-</html>
+ 
+        <%- include('../partials/footer.ejs') %>

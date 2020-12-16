@@ -32,7 +32,7 @@ const {
 router.route('/').get(AllBlogs).post(upload.single('image'), newBlog);
 router.route('/new').get(renderNewBlog);
 
-router.route('/:id').get(showBlog).put(updateBlog).delete(deleteBlog);
+router.route('/:id').get(showBlog).put(upload.single('image'), updateBlog).delete(deleteBlog);
 router.route('/:id/edit').get(renderEditBlog);
 
 
