@@ -1,20 +1,27 @@
 <%- include('../partials/header.ejs') %>
 
-        <h1>Blog Post</h1>
-        <div class="row center">
-            <% for(const x of query){ %>
-            <h2 class="text-lg"> <%= x.title %> </h2>
-            <img class="responsive-img" src="<%= x.image %>" alt="">
-            <h2> <%= x.description %> </h2>
-            <h2> <%= x.createdAt.toDateString() %> </h2>
-            <a href="/blogs/<%=x._id %> " class="waves-effect waves-light btn">Show More</a>
-            <a href="/blogs/<%=x._id %>/edit " class="waves-effect waves-light btn">Edit</a>
-            <a href="/blogs/new " class="waves-effect waves-light btn">Create New</a>
-            <form style="display: inline;" action="/blogs/<%= x._id %>?_method=DELETE " method="POST">
-                <button class="waves-effect waves-light btn">Delete</button>
-            </form>
-            <% }   %>
+<h1>Blog Post</h1>
+<div class="row center">
+    <% for(const x of query){ %>
+    <div class="post-head">
+        <h2 class="text-lg"> <%= x.title %> </h2>
+        <h2> <%= x.createdAt %> </h2>
+    </div>
+    <div class="post-body">
+        <img class="responsive-img" src="<%= x.image %>" alt="">
+    </div>
+    <div class="post-desc">
+        <%= x.description %> 
+    </div>
 
-        </div>
- 
-        <%- include('../partials/footer.ejs') %>
+    <a href="/blogs/<%=x._id %> " class="waves-effect waves-light btn">Show More</a>
+    <a href="/blogs/<%=x._id %>/edit " class="waves-effect waves-light btn">Edit</a>
+    <a href="/blogs/new " class="waves-effect waves-light btn">Create New</a>
+    <form style="display: inline;" action="/blogs/<%= x._id %>?_method=DELETE " method="POST">
+        <button class="waves-effect waves-light btn">Delete</button>
+    </form>
+    <% }   %>
+
+</div>
+
+<%- include('../partials/footer.ejs') %>

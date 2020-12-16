@@ -97,14 +97,25 @@ exports.renderEditBlog = async (req, res, next) => {
 
 exports.updateBlog = async (req, res, next) => {
     try {
-        const file = `uploads/${req.file.filename}`
-        const blog = await Blogs.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        })
-        blog.image = file
-        await blog.save();
-        res.redirect('/blogs')
+
+        if (req.file) {
+            const file = `uploads/${req.file.filename}`
+            const blog = await Blogs.findByIdAndUpdate(req.params.id, req.body, {
+                new: true,
+                runValidators: true
+            })
+            blog.image = file
+            await blog.save();
+            res.redirect('/blogs')
+        } else {
+            await Blogs.findByIdAndUpdate(req.params.id, req.body, {
+                new: true,
+                runValidators: true
+            })
+            res.redirect('/blogs')
+        }
+
+
     } catch (err) {
         console.error(err)
     }

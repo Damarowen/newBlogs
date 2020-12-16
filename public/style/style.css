@@ -43,3 +43,12 @@ display: block;
 .wrapper.active .content {
     display: none;
 }
+
+body {
+    background: #fff;
+    font-family: Nunito,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    color: #6c7a89;
+}
