@@ -87,7 +87,7 @@ blockquote {
 .post-body>img {}
 
 #body {
-    margin-top: 8em;
+    margin-top: 3em;
 }
 
 #button {
@@ -100,4 +100,25 @@ a {
 
 .avatar {
     height: 30vh !important;
+}
+
+nav ul a {
+    color: black;
+    padding: 0;
+    margin-top: 1.2em;
+    font-size: 1.2em;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+
+
+nav ul a:hover {
+    border-bottom: 4px solid orange;
+    background-color: inherit;
+}
+
+nav {
+    line-height: 2em;
+    margin-bottom: 1em;
 }

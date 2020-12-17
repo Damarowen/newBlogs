@@ -1,3 +1,14 @@
+// **material Box from Materialize css
+
+document.addEventListener('DOMContentLoaded', function() {
+  var el = document.querySelectorAll('.parallax');
+  var instances = M.Parallax.init(el);
+  console.log(instances)
+});
+
+
+// **image preview upload
+
 const img = document.querySelector("img");
 const wrapper = document.querySelector(".wrapper");
 const cancel = document.querySelector(".cancel")
