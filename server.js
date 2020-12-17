@@ -7,6 +7,10 @@ const PORT = 5000;
 const methodOverride = require("method-override")
 const bodyParser = require("body-parser");
 
+//USE FOR MOMENT JS
+app.locals.moment = require('moment')
+
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 mongoose.set('useFindAndModify', false);//supaya ga error untuk findByidAndUpdate nya

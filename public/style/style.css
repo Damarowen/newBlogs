@@ -37,7 +37,7 @@
 }
 
 .wrapper.active:hover .cancel {
-display: block;
+    display: block;
 }
 
 .wrapper.active .content {
@@ -46,9 +46,58 @@ display: block;
 
 body {
     background: #fff;
-    font-family: Nunito,sans-serif;
+    font-family: Nunito, sans-serif;
     font-weight: 400;
     font-style: normal;
     line-height: 1;
-    color: #6c7a89;
+}
+
+
+.post-desc {
+    font-size: 2em;
+    line-height: 1.2;
+}
+
+
+blockquote {
+    border-left: 5px solid orange;
+}
+
+.post-head-title {
+    letter-spacing: -1px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.post-head-title:hover {
+ color: orange;
+}
+
+.post-head-date {
+    font-size: 2em;
+    color: gray;
+    margin: 10px 0 30px;
+}
+
+.post-desc {
+    font-weight: 300;
+}
+
+
+.post-body>img {}
+
+#body {
+    margin-top: 8em;
+}
+
+#button {
+    margin-top: 2em;
+}
+
+a {
+    color: inherit;
+}
+
+.avatar {
+    height: 30vh !important;
 }
