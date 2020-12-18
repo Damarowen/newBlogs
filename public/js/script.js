@@ -1,10 +1,16 @@
 // **material Box from Materialize css
 
 document.addEventListener('DOMContentLoaded', function() {
-  var el = document.querySelectorAll('.parallax');
-  var instances = M.Parallax.init(el);
-  console.log(instances)
+  var paralax = document.querySelectorAll('.parallax');
+  var tab = document.querySelectorAll('.tabs');
+
+ M.Parallax.init(paralax);
+ M.Tabs.init(tab, {
+  duration: 100
+ });
+
 });
+
 
 
 // **image preview upload
@@ -31,11 +37,11 @@ inputBtn.addEventListener("change", function () {
   }
 
   //memasang class untuk wrapper
-  wrapper.classList.add("active")
+  wrapper.classList.add("actives")
 
 cancel.addEventListener('click', function() {
   img.src = "";
-  wrapper.classList.remove("active")
+  wrapper.classList.remove("actives")
   inputBtn.value = "";
 })
 

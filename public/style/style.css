@@ -8,8 +8,8 @@
     font-size: 5em;
 }
 
-.active {
-    display: none
+.actives {
+    display: none;
 }
 
 .content {
@@ -70,7 +70,7 @@ blockquote {
 }
 
 .post-head-title:hover {
- color: orange;
+    color: orange;
 }
 
 .post-head-date {
@@ -84,23 +84,19 @@ blockquote {
 }
 
 
-.post-body>img {}
-
 #body {
-    margin-top: 3em;
+    margin-top: 1em;
 }
 
 #button {
-    margin-top: 2em;
+    margin: 3em 0;
 }
 
 a {
     color: inherit;
 }
 
-.avatar {
-    height: 30vh !important;
-}
+
 
 nav ul a {
     color: black;
@@ -122,3 +118,58 @@ nav {
     line-height: 2em;
     margin-bottom: 1em;
 }
+
+.tabs .tab a {
+    color: black !important;
+    font-size: 1.5em;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.tabs .tab a.active {
+    border-bottom: 4px solid orange;
+    background-color: inherit;
+}
+
+.tabs .tab a:hover {
+    color: orange !important;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: white;
+    outline: none;
+}
+
+.tabs .tab {
+    margin: 0 20px;
+    text-transform: none;
+}
+
+.tabs .tab a {
+    padding: 0;
+}
+
+#avatar>h5 {
+    color: gray;
+}
+
+
+#avatar>img {
+    height: 16vh !important;
+}
+
+section {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+#post {
+    padding: 20px 0;
+}
+
+#about p {
+    color: gray;
+    text-align: justify;
+}
+

@@ -1,10 +1,19 @@
 <%- include('../partials/header.ejs') %>
 
+<section>
+    <div class="row">
+        <ul class="tabs">
+            <li class="tab"><a href="#body">Latest</a></li>
+            <li class="tab"><a href="#about">About</a></li>
+            <li class="tab"><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</section>
 
 
-
-<% for(const x of query){ %>
 <section id="body">
+    <% for(const x of query){ %>
+    <div id="post">
         <div class="post-head">
             <h2 class="post-head-title">
                 <a href="/blogs/<%=x._id %>"><%= x.title %></a>
@@ -19,18 +28,57 @@
                 <%= x.description %>
             </blockquote>
         </div>
+        <div id="button">
+            <a href="/blogs/<%=x._id %> " class="waves-effect waves-light btn">Show More</a>
+            <a href="/blogs/<%=x._id %>/edit " class="waves-effect waves-light btn">Edit</a>
+            <a href="/blogs/new " class="waves-effect waves-light btn">Create New</a>
+            <form style="display: inline;" action="/blogs/<%= x._id %>?_method=DELETE " method="POST">
+                <button class="waves-effect waves-light btn">Delete</button>
+            </form>
+        </div>
+    </div>
+    <% }   %>
 </section>
 
-<section id="button">
-        <a href="/blogs/<%=x._id %> " class="waves-effect waves-light btn">Show More</a>
-        <a href="/blogs/<%=x._id %>/edit " class="waves-effect waves-light btn">Edit</a>
-        <a href="/blogs/new " class="waves-effect waves-light btn">Create New</a>
-        <form style="display: inline;" action="/blogs/<%= x._id %>?_method=DELETE " method="POST">
-            <button class="waves-effect waves-light btn">Delete</button>
-        </form>
+<section id="about" class="container">
+    <div class="row">
+        <p class="flow-text tex">
+            Hello, <br>
+            sit amet consectetur adipisicing elit. Commodi dolor possimus et maiores, consequuntur
+            culpa quisquam debitis aliquam cumque dicta hic autem nam beatae minus esse, doloremque temporibus at.
+            Quisquam.
+        </p>
+    </div>
 </section>
 
-<% }   %>
+
+<section id="contact">
+    <div class="row">
+        <div class="col s12">
+            <form>
+                <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <input type="email" id="email">
+                    <label for="email">Your Email</label>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">message</i>
+                    <textarea id="message" class="materialize-textarea" cols="20" rows="20"></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">date_range</i>
+                    <input type="text" id="date" class="datepicker">
+                    <label for="date">Choose a date you need me for...</label>
+                </div>
+                <div class="input-field center">
+                    <button class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
 
 
 <%- include('../partials/footer.ejs') %>
