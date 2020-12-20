@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // **image preview upload
 
-const img = document.querySelector("img");
+const img = document.querySelector("#imageUpload");
 const wrapper = document.querySelector(".wrapper");
 const cancel = document.querySelector(".cancel")
 const inputText = document.querySelector("#inputBtn")

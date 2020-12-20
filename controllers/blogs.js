@@ -1,6 +1,19 @@
+const { render } = require('ejs')
 const Blogs = require('../models/blogs')
+const User = require('../models/user')
 
 
+// @desc GET LOGIN
+// @route GET /blogs/login
+// @access PRIVATE
+
+exports.Login = async (req, res, next) => {
+    try {
+     res.render('./blogs/login')
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 
 
@@ -11,7 +24,10 @@ const Blogs = require('../models/blogs')
 exports.AllBlogs = async (req, res, next) => {
     try {
 
-        await Blogs.find({}, function (err, data) {
+        await Blogs.find({})
+        .sort({ createdAt: "desc"})
+        .limit(2)
+        .exec(function (err, data) {
             if (err) {
                 console.error(err)
             } else {

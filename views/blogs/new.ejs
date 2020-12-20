@@ -14,7 +14,7 @@
               <i class="material-icons">backup</i>
               <p>Upload File</p>
             </div>
-            <img class="responsive-img">
+            <img id="imageUpload" class="responsive-img">
             <div class="cancel"><span class="material-icons">
               clear
             </span></div>
@@ -31,7 +31,11 @@
           </div>
         </div>
         <div class="input-field col s12">
-          <input name="description" type="text" id="description" class="validate">
+          <input name="headline" type="text" id="headline" class="validate">
+          <label for="headline">Headline</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="description" class="materialize-textarea " name="description"></textarea>
           <label for="description">Description</label>
         </div>
         <a href="/blogs" class="btn pink"> Back </a>

@@ -1,12 +1,15 @@
 [
 {
     "title": "Brand New Day",
-    "image":"/img/1.jpg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat culpa porro sapiente corrupti accusamus laborum! Id sint pariatur dolore porro?" 
+    "image":"img/1.jpg",
+    "headline": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat culpa porro sapiente corrupti accusamus laborum! Id sint pariatur dolore porro?",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illum officia illo, ipsam repellendus, et est dolorum repudiandae, natus sint quod praesentium facere nam minima temporibus tenetur. Accusantium aliquam dicta exercitationem, molestias saepe odio repudiandae, nisi enim inventore adipisci est nesciunt maxime illum iusto ab? Aliquam ab sapiente libero consectetur ex, nostrum maiores. Ut culpa rem eius quo, quod consequuntur perspiciatis totam ullam distinctio illum blanditiis? Ut, vero praesentium exercitationem iste amet voluptas accusantium fugiat a mollitia nostrum at numquam perspiciatis dignissimos sed et placeat vel temporibus omnis asperiores dolorem vitae nobis aspernatur impedit. Sint suscipit maiores nisi, similique dolorum optio reprehenderit vitae enim debitis! Culpa, id ex deserunt consectetur quaerat, quam sunt autem fuga maxime deleniti recusandae quidem asperiores repellendus neque libero, eos iste modi voluptates qui tenetur assumenda? Nam tenetur quasi facere consequatur molestias voluptatem, doloremque maxime pariatur saepe est vitae quos sapiente illum blanditiis quo necessitatibus hic deserunt doloribus officia numquam. Autem doloremque eum fuga voluptate delectus illum quos blanditiis tempore iusto libero harum, corrupti itaque reprehenderit! Odit reprehenderit ipsum voluptatibus quaerat eligendi aspernatur quas sequi, amet facere at! Autem quae nemo hic quasi corporis eos incidunt dolor est ducimus quod, fuga laudantium a nam accusantium sit?"
 },
 {
-    "title": "Brand New Day",
-    "image":"/img/1.jpg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat culpa porro sapiente corrupti accusamus laborum! Id sint pariatur dolore porro?" 
+    "title": "Looks Like Something Good Is Coming",
+    "image":"img/2.jpg",
+    "headline": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat culpa porro sapiente corrupti accusamus laborum! Id sint pariatur dolore porro?",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illum officia illo, ipsam repellendus, et est dolorum repudiandae, natus sint quod praesentium facere nam minima temporibus tenetur. Accusantium aliquam dicta exercitationem, molestias saepe odio repudiandae, nisi enim inventore adipisci est nesciunt maxime illum iusto ab? Aliquam ab sapiente libero consectetur ex, nostrum maiores. Ut culpa rem eius quo, quod consequuntur perspiciatis totam ullam distinctio illum blanditiis? Ut, vero praesentium exercitationem iste amet voluptas accusantium fugiat a mollitia nostrum at numquam perspiciatis dignissimos sed et placeat vel temporibus omnis asperiores dolorem vitae nobis aspernatur impedit. Sint suscipit maiores nisi, similique dolorum optio reprehenderit vitae enim debitis! Culpa, id ex deserunt consectetur quaerat, quam sunt autem fuga maxime deleniti recusandae quidem asperiores repellendus neque libero, eos iste modi voluptates qui tenetur assumenda? Nam tenetur quasi facere consequatur molestias voluptatem, doloremque maxime pariatur saepe est vitae quos sapiente illum blanditiis quo necessitatibus hic deserunt doloribus officia numquam. Autem doloremque eum fuga voluptate delectus illum quos blanditiis tempore iusto libero harum, corrupti itaque reprehenderit! Odit reprehenderit ipsum voluptatibus quaerat eligendi aspernatur quas sequi, amet facere at! Autem quae nemo hic quasi corporis eos incidunt dolor est ducimus quod, fuga laudantium a nam accusantium sit?"
 }
 ]
+

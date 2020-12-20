@@ -1,17 +1,33 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Blog Post</h1>
-<div class="row center">
-    <h2 class="text-lg"> <%= query.title %> </h2>
-    <img class="responsive-img" src="<%= query.image %>" alt="">
-    <h2> <%= query.description %> </h2>
-    <h2> <%= query.createdAt.toDateString() %> </h2>
-    <a href="/blogs/" class="waves-effect waves-light btn">Back</a>
-    <a href="/blogs/<%=query._id %>/edit " class="waves-effect waves-light btn">Edit</a>
-    <form style="display: inline;" action="/blogs/<%= query._id %>?_method=DELETE " method="POST">
-        <button class="waves-effect waves-light btn">Delete</button>
-    </form>
 
+
+<div id="post">
+    <div class="post-head">
+        <h2 class="post-head-title">
+            <a href="/blogs/<%=query._id %>"><%= query.title %></a>
+        </h2>
+        <h2 class="post-head-date"> <%= moment(query.createdAt).format("D MMMM YYYY"); %> </h2>
+    </div>
+    <div class="post-body">
+        <img class="responsive-img" src="/<%= query.image %>" alt="">
+    </div>
+    <div class="post-headline">
+        <blockquote class="left-align">
+            <%= query.headline %>
+        </blockquote>
+    </div>
+
+    <div class="post-desc">
+        <%= query.description %>
+    </div>
+    <div id="button">
+        <a href="/blogs/ " class="waves-effect waves-light btn">Back</a>
+        <a href="/blogs/<%=query._id %>/edit " class="waves-effect waves-light btn">Edit</a>
+        <form style="display: inline;" action="/blogs/<%= query._id %>?_method=DELETE " method="POST">
+            <button class="waves-effect waves-light btn">Delete</button>
+        </form>
+    </div>
 </div>
 
 <%- include('../partials/footer.ejs') %>

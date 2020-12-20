@@ -1,5 +1,13 @@
 <%- include('../partials/header.ejs') %>
 
+
+<div id="avatar" class="container center">
+
+    <img src="/img/avatar.jpg" alt="" class="circle responsive-img avatar"> <!-- notice the "circle" class -->
+    <h3>My Blog</h3>
+    <h5>A super simple blogging theme for Jekyll.</h5>
+</div>
+
 <section>
     <div class="row">
         <ul class="tabs">
@@ -21,11 +29,11 @@
             <h2 class="post-head-date"> <%= moment(x.createdAt).format("D MMMM YYYY"); %> </h2>
         </div>
         <div class="post-body">
-            <img class="responsive-img" src="<%= x.image %>" alt="">
+            <img class="responsive-img" src="/<%= x.image %>" alt="">
         </div>
         <div class="post-desc">
             <blockquote class="left-align">
-                <%= x.description %>
+                <%= x.headline %>
             </blockquote>
         </div>
         <div id="button">

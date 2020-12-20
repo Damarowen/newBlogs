@@ -19,6 +19,7 @@ const upload = multer({
 
 // call controllers
 const { 
+    Login,
     AllBlogs,
     showBlog,
     renderNewBlog,
@@ -28,7 +29,7 @@ const {
     deleteBlog
 } = require('../controllers/blogs')
 
-
+router.route('/login').get(Login)
 router.route('/').get(AllBlogs).post(upload.single('image'), newBlog);
 router.route('/new').get(renderNewBlog);
 

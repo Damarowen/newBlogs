@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %> 
+
+    <h1>Login Page</h1>
+    <div class="row center">
+      <form action="/blogs" method="POST">
+        <div class="input-field col s12">
+          <input name="username" type="text" id="username" placeholder="username" class="validate">
+          <label for="Username">Username</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" type="password" placeholder="password" name="password" class="validate">
+          <label for="password">password</label>
+        </div>
+        <a href="/blogs" class="btn pink"> Back </a>
+        <button class="btn waves-effect waves-light pink" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+
+    </div>
+
+
+<%- include('../partials/footer.ejs') %> 

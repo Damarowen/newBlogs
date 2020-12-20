@@ -1,23 +1,9 @@
-.wrapper>img {
-    height: 40vh;
-    width: 20vw;
-    border-radius: 10px;
-}
+/* * IMAGE UPLOAD AND PREVIEW */
 
-.content>i {
-    font-size: 5em;
-}
-
-.actives {
-    display: none;
-}
-
-.content {
-    padding: 10vh 0;
-}
 
 .wrapper {
-    height: 300px;
+    min-height: 300px;
+    height: auto;
     width: 100%;
     border-radius: 10px;
     background: #fff;
@@ -25,6 +11,14 @@
     display: grid;
     place-items: center;
     overflow: hidden;
+}
+
+.wrapper > .preview > img {
+    height: 50vh;
+}
+
+.wrapper>img {
+    display: none;
 }
 
 .cancel {
@@ -36,13 +30,35 @@
     display: none;
 }
 
-.wrapper.active:hover .cancel {
+.content, .content>i {
+    font-size: 2em;
+}
+
+
+
+
+/* * WHEN SOMEONE UPLOAD IT CREATES ACTIVE CLASS */
+
+.wrapper.actives:hover .cancel {
     display: block;
 }
 
-.wrapper.active .content {
+.wrapper.actives > img {
+    display: block;
+    height: 50vh;
+}
+
+.wrapper.actives > .preview > img {
     display: none;
 }
+
+.wrapper.actives > .content {
+    display: none;
+}
+
+
+/* * END */
+
 
 body {
     background: #fff;
@@ -50,12 +66,30 @@ body {
     font-weight: 400;
     font-style: normal;
     line-height: 1;
+    /* * below is for sticky footer */
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+    /* * below is for sticky footer */
 
+  main {
+    flex: auto;
+  }
 
-.post-desc {
+.post-headline {
     font-size: 2em;
     line-height: 1.2;
+    font-weight: 600;
+ 
+}
+
+.post-desc {
+    font-size: 1.7em;
+    line-height: 1.2;
+    color: black;
+    padding: 15px;
+    text-align: justify;
 }
 
 
@@ -77,10 +111,6 @@ blockquote {
     font-size: 2em;
     color: gray;
     margin: 10px 0 30px;
-}
-
-.post-desc {
-    font-weight: 300;
 }
 
 
@@ -170,6 +200,30 @@ section {
 
 #about p {
     color: gray;
+    text-align: justify;
+}
+
+.socials {
+    display: flex;
+    place-content: center;
+}
+
+.socials>li>a {
+    margin: 20px;
+    font-size: 2.5em;
+}
+
+.page-footer {
+    color: darkgrey;
+    background-color:inherit;
+}
+
+.page-footer .footer-copyright {
+    background-color: inherit;
+    color: darkgrey;
+}
+
+textarea {
     text-align: justify;
 }
 

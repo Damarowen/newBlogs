@@ -10,6 +10,10 @@ const BlogsSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Please Add Image'],
         },
+        headline: {
+            type: String,
+            required: [true, 'Please Add Headline'],
+        },
         description: {
             type: String,
             required: [true, 'Please Add Description'],
