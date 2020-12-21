@@ -1,4 +1,3 @@
-const { render } = require('ejs')
 const Blogs = require('../models/blogs')
 const User = require('../models/user')
 
@@ -7,9 +6,27 @@ const User = require('../models/user')
 // @route GET /blogs/login
 // @access PRIVATE
 
-exports.Login = async (req, res, next) => {
+exports.GetLogin = async (req, res, next) => {
     try {
      res.render('./blogs/login')
+     console.log(req.session)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+
+// @desc POST LOGIN
+// @route POST /blogs/login
+// @access PRIVATE
+
+exports.Login = async (req, res, next) => {
+    try {
+    const { name,password} = req.body;
+    const user = await User.findOne({name})
+    req.session.user_id = user._id
+    console.log(req.session.user_id)
+    // res.redirect("/blogs")
     } catch (err) {
         console.error(err)
     }

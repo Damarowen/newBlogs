@@ -6,10 +6,22 @@ const connectDB = require('./config/db');
 const PORT = 5000;
 const methodOverride = require("method-override")
 const bodyParser = require("body-parser");
+const session = require('express-session');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config/config.env'});
+
 
 //USE FOR MOMENT JS
 app.locals.moment = require('moment')
 
+
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
+    resave: false,
+    saveUninitialized: true
+}
+
+app.use(session(sessionConfig))
 
 
 app.use(express.static(path.join(__dirname, 'public')))
