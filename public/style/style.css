@@ -149,6 +149,9 @@ nav {
     margin-bottom: 1em;
 }
 
+nav #username {
+margin-right: 20px;}
+
 .tabs .tab a {
     color: black !important;
     font-size: 1.5em;

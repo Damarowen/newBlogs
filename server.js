@@ -23,6 +23,11 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 
+app.use((req, res, next) => {
+    res.locals.currentUser = req.session.username;
+    next();
+})
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 mongoose.set('useFindAndModify', false);//supaya ga error untuk findByidAndUpdate nya
@@ -41,6 +46,10 @@ connectDB();
 //router
 const blogsRouter = require('./router/index');
 app.use('/blogs' , blogsRouter)
+
+const authRouter = require('./router/auth');
+app.use('/' , authRouter)
+
 
 
 app.listen(

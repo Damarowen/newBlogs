@@ -6,10 +6,9 @@ const User = require('../models/user')
 // @route GET /blogs/login
 // @access PRIVATE
 
-exports.GetLogin = async (req, res, next) => {
+exports.RenderLogin = async (req, res, next) => {
     try {
-     res.render('./blogs/login')
-     console.log(req.session)
+        res.render('./blogs/login')
     } catch (err) {
         console.error(err)
     }
@@ -22,16 +21,42 @@ exports.GetLogin = async (req, res, next) => {
 
 exports.Login = async (req, res, next) => {
     try {
-    const { name,password} = req.body;
-    const user = await User.findOne({name})
-    req.session.user_id = user._id
-    console.log(req.session.user_id)
-    // res.redirect("/blogs")
+        const {
+            name,
+            password
+        } = req.body;
+        const user = await User.findOne({
+            name
+        })
+        req.session.user_id = user._id
+        req.session.username = user.name
+
+        // Check if password matches
+        const isMatch = await user.matchPassword(password);
+
+        if (!isMatch) {
+            console.error('pass tidak sama')
+        }
+        res.redirect("/blogs")
+
     } catch (err) {
         console.error(err)
     }
 }
 
+// @desc POST LOGOUT
+// @route POST /blogs/
+// @access PRIVATE
+
+exports.Logout = async (req, res, next) => {
+    try {
+        req.session.user_id = null;
+        req.session.username = null;
+        res.redirect("/blogs")
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 
 // @desc GET ALL BLOGS
@@ -42,17 +67,19 @@ exports.AllBlogs = async (req, res, next) => {
     try {
 
         await Blogs.find({})
-        .sort({ createdAt: "desc"})
-        .limit(2)
-        .exec(function (err, data) {
-            if (err) {
-                console.error(err)
-            } else {
-                res.render("./blogs/index", {
-                    query: data
-                })
-            }
-        })
+            .sort({
+                createdAt: "desc"
+            })
+            .limit(2)
+            .exec(function (err, data) {
+                if (err) {
+                    console.error(err)
+                } else {
+                    res.render("./blogs/index", {
+                        query: data
+                    })
+                }
+            })
 
     } catch (err) {
         console.error(err)

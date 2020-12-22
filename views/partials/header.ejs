@@ -36,7 +36,12 @@
     <nav class="nav-wrapper transparent z-depth-0">
       <div class="container">
         <ul class="right">
-          <li id="login"><a href="/blogs/login">LOGIN</a></li>
+          <% if (!currentUser) { %>  
+            <li id="login"><a href="/login">LOGIN</a></li> 
+          <%  } else {  %> 
+            <li id="username"><a>Welcome,<%- currentUser.toUpperCase() %>  </a></li> 
+            <li id="logout"><a href="/logout">LOGOUT</a></li> 
+         <%  } %>  
         </ul>
       </div>
     </nav>
