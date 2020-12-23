@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const multer = require('multer')
+const { protect } = require('../middleware/auth');
+
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -28,11 +30,11 @@ const {
     deleteBlog
 } = require('../controllers/blogs')
 
-router.route('/').get(AllBlogs).post(upload.single('image'), newBlog);
-router.route('/new').get(renderNewBlog);
+router.route('/').get(AllBlogs).post(protect, upload.single('image'), newBlog);
+router.route('/new').get(protect, renderNewBlog);
 
-router.route('/:id').get(showBlog).put(upload.single('image'), updateBlog).delete(deleteBlog);
-router.route('/:id/edit').get(renderEditBlog);
+router.route('/:id').get(showBlog).put(protect, upload.single('image'), updateBlog).delete(protect, deleteBlog);
+router.route('/:id/edit').get(protect, renderEditBlog);
 
 
 

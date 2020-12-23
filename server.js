@@ -39,7 +39,6 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
-app.use(errorHandler)
 
 
 // connect to database
@@ -54,7 +53,8 @@ app.use('/blogs' , blogsRouter)
 const authRouter = require('./router/auth');
 app.use('/' , authRouter)
 
-
+// ** important to use this below router
+app.use(errorHandler)
 
 app.listen(
     PORT, console.log(`server runnin on ${PORT}`)

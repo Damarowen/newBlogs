@@ -11,7 +11,7 @@ exports.RenderLogin = async (req, res, next) => {
     try {
         res.render('./blogs/login')
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 }
 
@@ -45,7 +45,7 @@ exports.Login = async (req, res, next) => {
         res.redirect("/blogs")
 
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 }
 
@@ -58,7 +58,7 @@ exports.Logout = async (req, res, next) => {
         req.session.destroy();
         res.redirect("/blogs")
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 }
 
@@ -92,7 +92,7 @@ exports.AllBlogs = async (req, res, next) => {
         })
 
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 }
 
@@ -104,12 +104,17 @@ exports.AllBlogs = async (req, res, next) => {
 exports.showBlog = async (req, res, next) => {
     try {
         const query = await Blogs.findById(req.params.id)
+        if(!query){
+            return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404))
+        }
+        
         res.render('./blogs/show', {
             query
         })
-
+        
     } catch (err) {
-        console.log("sssss")
+       next(err)
+
     }
 }
 
@@ -141,7 +146,7 @@ exports.newBlog = async (req, res, next) => {
             res.redirect('/blogs')
         }
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 
 }
@@ -154,11 +159,15 @@ exports.newBlog = async (req, res, next) => {
 exports.renderEditBlog = async (req, res, next) => {
     try {
         const query = await Blogs.findById(req.params.id)
+        if(!query){
+            return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404))
+        }
         await res.render("./blogs/edit", {
             query
         })
     } catch (err) {
-        console.error(err)
+        return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404))
+
     }
 }
 
@@ -189,7 +198,7 @@ exports.updateBlog = async (req, res, next) => {
 
 
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 }
 
@@ -204,6 +213,6 @@ exports.deleteBlog = async (req, res, next) => {
 
 
     } catch (err) {
-        console.error(err)
+        next(err)
     }
 }
