@@ -1,5 +1,6 @@
 const Blogs = require('../models/blogs')
 const User = require('../models/user')
+const ErrorResponse = require('../utils/errorResponse');
 
 
 // @desc GET LOGIN
@@ -28,6 +29,9 @@ exports.Login = async (req, res, next) => {
         const user = await User.findOne({
             name
         })
+        if (!user) {
+            return next(new ErrorResponse('invalid credentials', 401))
+        };
         req.session.user_id = user._id
         req.session.username = user.name
 
@@ -35,8 +39,9 @@ exports.Login = async (req, res, next) => {
         const isMatch = await user.matchPassword(password);
 
         if (!isMatch) {
-            console.error('pass tidak sama')
+            return next(new ErrorResponse('pass tidak sama', 401))
         }
+
         res.redirect("/blogs")
 
     } catch (err) {
@@ -50,8 +55,7 @@ exports.Login = async (req, res, next) => {
 
 exports.Logout = async (req, res, next) => {
     try {
-        req.session.user_id = null;
-        req.session.username = null;
+        req.session.destroy();
         res.redirect("/blogs")
     } catch (err) {
         console.error(err)
@@ -66,20 +70,26 @@ exports.Logout = async (req, res, next) => {
 exports.AllBlogs = async (req, res, next) => {
     try {
 
-        await Blogs.find({})
-            .sort({
-                createdAt: "desc"
-            })
-            .limit(2)
-            .exec(function (err, data) {
-                if (err) {
-                    console.error(err)
-                } else {
-                    res.render("./blogs/index", {
-                        query: data
-                    })
-                }
-            })
+        //pagination
+        const page = req.query.page;
+        const limitPost = 2;
+        const startIndex = (page - 1) * limitPost;
+        const endIndex = page * limitPost;
+
+
+        const totalPost = await Blogs.countDocuments();
+
+        const data = await Blogs.find({}).skip(startIndex).limit(limitPost).sort({
+            createdAt: "desc"
+        })
+
+
+        res.render("./blogs/index", {
+            query: data,
+            totalPost,
+            page,
+            endIndex
+        })
 
     } catch (err) {
         console.error(err)
@@ -93,18 +103,13 @@ exports.AllBlogs = async (req, res, next) => {
 
 exports.showBlog = async (req, res, next) => {
     try {
-        await Blogs.findById(req.params.id, function (err, data) {
-            if (err) {
-                console.error(err)
-            } else {
-                res.render('./blogs/show', {
-                    query: data
-                })
-            }
+        const query = await Blogs.findById(req.params.id)
+        res.render('./blogs/show', {
+            query
         })
 
     } catch (err) {
-        console.error(err)
+        console.log("sssss")
     }
 }
 
@@ -123,11 +128,18 @@ exports.renderNewBlog = async (req, res, next) => {
 
 exports.newBlog = async (req, res, next) => {
     try {
-        const file = `uploads/${req.file.filename}`
-        const blog = new Blogs(req.body)
-        blog.image = file
-        await blog.save();
-        res.redirect('/blogs')
+        if (req.file) {
+            const file = `uploads/${req.file.filename}`
+            const blog = new Blogs(req.body)
+            blog.image = file
+            await blog.save();
+            res.redirect('/blogs')
+        } else {
+            const blog = new Blogs(req.body)
+            blog.image = "img/no-image-default.png"
+            await blog.save();
+            res.redirect('/blogs')
+        }
     } catch (err) {
         console.error(err)
     }
@@ -188,7 +200,6 @@ exports.updateBlog = async (req, res, next) => {
 exports.deleteBlog = async (req, res, next) => {
     try {
         await Blogs.findByIdAndDelete(req.params.id)
-        console.log("BLOG DELETED")
         res.redirect('/blogs')
 
 

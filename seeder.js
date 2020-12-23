@@ -22,7 +22,7 @@ const user = JSON.parse(
 const importData = async () =>{
     try {
         await Blogs.create(blog);
-        await User.create(user);
+        // await User.create(user);
         console.log(`data imported ${__dirname}`);
         process.exit();
     } catch(err) {
@@ -34,7 +34,7 @@ const importData = async () =>{
 const deleteData = async () =>{
     try {
         await Blogs.deleteMany({});
-        await User.deleteMany({});
+        // await User.deleteMany({});
         console.log(`data delete ${__dirname}`);
         process.exit();
     } catch(err) {

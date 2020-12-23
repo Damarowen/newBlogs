@@ -22,11 +22,13 @@
         <%= query.description %>
     </div>
     <div id="button">
-        <a href="/blogs/ " class="waves-effect waves-light btn">Back</a>
-        <a href="/blogs/<%=query._id %>/edit " class="waves-effect waves-light btn">Edit</a>
+        <a href="/blogs/ " class="waves-effect waves-light btn orange">Back</a>
+        <% if(currentUser) { %> 
+        <a href="/blogs/<%=query._id %>/edit " class="waves-effect waves-light btn orange">Edit</a>
         <form style="display: inline;" action="/blogs/<%= query._id %>?_method=DELETE " method="POST">
-            <button class="waves-effect waves-light btn">Delete</button>
+            <button class="waves-effect waves-light btn orange">Delete</button>
         </form>
+        <%  }%> 
     </div>
 </div>
 

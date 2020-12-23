@@ -230,3 +230,6 @@ textarea {
     text-align: justify;
 }
 
+.pagination li.active {
+    background-color: orange;
+}

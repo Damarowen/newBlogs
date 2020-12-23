@@ -7,8 +7,10 @@ const PORT = 5000;
 const methodOverride = require("method-override")
 const bodyParser = require("body-parser");
 const session = require('express-session');
+const errorHandler = require('./middleware/error')
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env'});
+
 
 
 //USE FOR MOMENT JS
@@ -37,6 +39,8 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
+app.use(errorHandler)
+
 
 // connect to database
 connectDB();
