@@ -5,7 +5,7 @@ const multer = require('multer')
 const { protect } = require('../middleware/auth');
 
 
-// Set The Storage Engine
+//* Set The Storage Engine
 const storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function (req, file, cb) {
@@ -13,13 +13,13 @@ const storage = multer.diskStorage({
     }
 });
 
-// Init Upload
+//* Init Upload
 const upload = multer({
     storage: storage
 })
 
 
-// call controllers
+//* call controllers
 const { 
     AllBlogs,
     showBlog,

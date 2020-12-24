@@ -21,8 +21,8 @@
 
 <section id="body">
     <!-- * if query not 0 -->
-    <% if(query.length != 0) { %> 
-    <% for(const x of query){ %>
+    <% if(data.length != 0) { %>
+    <% for(const x of data){ %>
     <div id="post">
         <div class="post-head">
             <h2 class="post-head-title">
@@ -50,10 +50,56 @@
         </div>
     </div>
     <% }   %>
+
+
+    <ul class="pagination">
+
+        <!-- * Cursor Left -->
+        <% if( page > 0  && page != 2 ) { %>
+        <li><a href="/blogs?page=<%=parseInt(page) - 1%>"><i class="material-icons">chevron_left</i></a></li>
+        <% } else if (page == 2) { %>
+        <li><a href="/blogs"><i class="material-icons">chevron_left</i></a></li>
+        <% } else { %>
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <% } %>
+
+
+        <!-- * Page Number -->
+        <li class="waves-effect page active"><a href="/blogs">1</a></li>
+        <% if(totalPost > 2 || totalPost > 3)  { %>
+        <li class="waves-effect page"><a href="/blogs?page=2">2</a></a></li>
+        <% } %>
+        <% if(totalPost > 4 || totalPost > 5) { %>
+        <li class="waves-effect page"><a href="/blogs?page=3">3</a></li>
+        <% } %>
+        <% if(totalPost > 6 || totalPost > 7) { %>
+        <li class="waves-effect page"><a href="/blogs?page=4">4</a></li>
+        <% } %>
+        <% if(totalPost > 8 || totalPost > 9) { %>
+        <li class="waves-effect page"><a href="/blogs?page=5">5</a></li>
+        <% } %>
+
+        <!-- * Cursor Right -->
+        <!-- * no query page -->
+        <% if(!page && totalPost <= 2 ) { %>
+        <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+        <% } else if (!page && totalPost > 2  ) { %>
+        <li><a href="/blogs?page=2"><i class="material-icons">chevron_right</i></a></li>
+        <!-- * use remainder, if end and totalremainder 1 or equal disabled nav,  -->
+        <% } else if (endIndex % totalPost == 1  || endIndex == totalPost ) { %>
+        <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+        <% } else { %>
+        <li><a href="/blogs?page=<%=parseInt(page) + 1%>"><i class="material-icons">chevron_right</i></a></li>
+        <% } %>
+
+
+    </ul>
     <!-- * if there is nothing to display -->
     <% } else {  %>
-<h4 style="color: gray; padding: 20px;">There is nothing To display....</h4>
-        <% } %> 
+    <h4 style="color: gray; padding: 20px;">There is nothing To display....</h4>
+    <a href="/blogs/" class="waves-effect waves-light btn orange">Back</a>
+
+    <% } %>
 </section>
 
 <section id="about" class="container">
@@ -95,76 +141,8 @@
     </div>
 </section>
 
-<ul class="pagination">
-
-    <!-- * Cursor Left -->
-     <% if( page > 0  && page != 2 ) { %>
-    <li><a href="/blogs?page=<%=parseInt(page) - 1%>"><i class="material-icons">chevron_left</i></a></li>
-    <% } else if (page == 2) { %>
-    <li><a href="/blogs"><i class="material-icons">chevron_left</i></a></li>
-    <% } else { %>
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <% } %> 
 
 
-    <!-- * Page Number -->
-    <li class="waves-effect page active"><a href="/blogs">1</a></li>
-    <% if(totalPost > 2 || totalPost > 3)  { %>
-    <li class="waves-effect page"><a href="/blogs?page=2">2</a></a></li>
-    <% } %>
-    <% if(totalPost > 4 || totalPost > 5) { %>
-    <li class="waves-effect page"><a href="/blogs?page=3">3</a></li>
-    <% } %>
-    <% if(totalPost > 6 || totalPost > 7) { %>
-    <li class="waves-effect page"><a href="/blogs?page=4">4</a></li>
-    <% } %>
-    <% if(totalPost > 8 || totalPost > 9) { %>
-    <li class="waves-effect page"><a href="/blogs?page=5">5</a></li>
-    <% } %>
-
-    <!-- * Cursor Right -->
-    <!-- * no query page -->
-    <% if(!page && totalPost <= 2 ) { %>
-    <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
-    <% } else if (!page && totalPost > 2  ) { %>
-    <li><a href="/blogs?page=2"><i class="material-icons">chevron_right</i></a></li>
-    <!-- * use remainder, if end and totalremainder 1 or equal disabled nav,  -->
-    <% } else if (endIndex % totalPost == 1  || endIndex == totalPost ) { %>
-    <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
-    <% } else { %>
-    <li><a href="/blogs?page=<%=parseInt(page) + 1%>"><i class="material-icons">chevron_right</i></a></li>
-    <% } %>
-
-
-</ul>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const pages = urlParams.get('page')
-        let page = document.querySelectorAll('.page')
-        let pageOne = document.querySelector('.page')
-
-        if (pages) {
-            for (x of page) {
-                if (x.innerText === pages)
-                    x.classList.add("active")
-                pageOne.classList.remove("active")
-            }
-
-        }
-
-
-
-
-    });
-
-    function next() {
-        console.log("next")
-    }
-</script>
 
 
 

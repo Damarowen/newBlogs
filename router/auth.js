@@ -8,7 +8,7 @@ const {
     Login,
     Logout,
 
-} = require('../controllers/blogs')
+} = require('../controllers/auth')
 
 router.route('/login').get(RenderLogin).post(Login)
 router.route('/logout').get(Logout)

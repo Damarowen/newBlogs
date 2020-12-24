@@ -1,22 +1,24 @@
+
+
 const express = require('express');
 const path = require('path')
 const app = express();
 const mongoose = require("mongoose");
 const connectDB = require('./config/db');
 const PORT = 5000;
-const methodOverride = require("method-override")
+const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const session = require('express-session');
-const errorHandler = require('./middleware/error')
-const ErrorResponse = require('./utils/errorResponse');
-const dotenv = require('dotenv');
-dotenv.config({ path: './config/config.env'});
+const errorHandler = require('./middleware/error');
 
 
 
-//USE FOR MOMENT JS
+
+
+// * Moment JS
 app.locals.moment = require('moment')
 
+// * Express Session
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret!',
@@ -26,6 +28,7 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 
+// * Set Global Variabel
 app.use((req, res, next) => {
     res.locals.currentUser = req.session.username;
     next();
@@ -42,12 +45,12 @@ app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
 
 
-// connect to database
+// * connect to database
 connectDB();
 
 
 
-//router
+// * Mount Router
 const blogsRouter = require('./router/index');
 app.use('/blogs' , blogsRouter)
 
@@ -57,6 +60,8 @@ app.use('/' , authRouter)
 // ** important to use this below router
 app.use(errorHandler)
 
+
+// ** 404 not found page
 app.all('*', (req, res, next) => {
     res.status('404').render('404')
 })

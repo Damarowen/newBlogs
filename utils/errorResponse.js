@@ -1,4 +1,4 @@
-// setiak kali error akan menampilkan kalimat yang kita inginkan dan status server yg kita ingingkan
+//* setiak kali error akan menampilkan kalimat yang kita inginkan dan status server yg kita ingingkan
 
 class ErrorResponse extends Error {
     constructor(message, statusCode) {

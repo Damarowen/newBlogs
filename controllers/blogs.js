@@ -1,81 +1,16 @@
 const Blogs = require('../models/blogs')
-const User = require('../models/user')
 const ErrorResponse = require('../utils/errorResponse');
 
 
-// @desc GET LOGIN
-// @route GET /blogs/login
-// @access PRIVATE
 
-exports.RenderLogin = async (req, res, next) => {
-    try {
-        res.render('./blogs/login')
-    } catch (err) {
-        next(err)
-    }
-}
-
-
-// @desc POST LOGIN
-// @route POST /blogs/login
-// @access PRIVATE
-
-exports.Login = async (req, res, next) => {
-    try {
-        const {
-            name,
-            password
-        } = req.body;
-        const user = await User.findOne({
-            name
-        })
-
-        // Validate emil & password
-        if (!name || !password) {
-            return next(new ErrorResponse('Please provide an name and password', 400));
-        }
-        if (!user) {
-            return next(new ErrorResponse('User Not Found', 401))
-        };
-        req.session.user_id = user._id
-        req.session.username = user.name
-
-        // Check if password matches
-        const isMatch = await user.matchPassword(password);
-
-        if (!isMatch) {
-            return next(new ErrorResponse('pass tidak sama', 401))
-        }
-
-        res.redirect("/blogs")
-
-    } catch (err) {
-        next(err)
-    }
-}
-
-// @desc POST LOGOUT
-// @route POST /blogs/
-// @access PRIVATE
-
-exports.Logout = async (req, res, next) => {
-    try {
-        req.session.destroy();
-        res.redirect("/blogs")
-    } catch (err) {
-        next(err)
-    }
-}
-
-
-// @desc GET ALL BLOGS
-// @route GET /blogs/
-// @access Public
+//* @desc GET ALL BLOGS
+//* @route GET /blogs/
+//* @access Public
 
 exports.AllBlogs = async (req, res, next) => {
     try {
 
-        //pagination
+        //*pagination
         const page = req.query.page;
         const limitPost = 2;
         const startIndex = (page - 1) * limitPost;
@@ -90,7 +25,7 @@ exports.AllBlogs = async (req, res, next) => {
 
 
         res.render("./blogs/index", {
-            query: data,
+            data,
             totalPost,
             page,
             endIndex
@@ -102,9 +37,9 @@ exports.AllBlogs = async (req, res, next) => {
 }
 
 
-// @desc GET SINGLE BLOG
-// @route GET /blogs/:id
-// @access PUBLIC
+//* @desc GET SINGLE BLOG
+//* @route GET /blogs/:id
+//* @access PUBLIC
 
 exports.showBlog = async (req, res, next) => {
     try {
@@ -124,17 +59,17 @@ exports.showBlog = async (req, res, next) => {
 }
 
 
-// @desc render form create blog
-// @access PRIVATE
+//* @desc render form create blog
+//* @access PRIVATE
 
 exports.renderNewBlog = async (req, res, next) => {
     res.render('./blogs/new')
 }
 
 
-// @desc NEW BLOG
-// @route POST  /blogs/
-// @access PRIVATE
+//* @desc NEW BLOG
+//* @route POST  /blogs/
+//* @access PRIVATE
 
 exports.newBlog = async (req, res, next) => {
     try {
@@ -157,9 +92,9 @@ exports.newBlog = async (req, res, next) => {
 }
 
 
-// @desc Render EDIT BLOG
-// @route GET  /blogs/:id/EDIT
-// @access PRIVATE
+//* @desc Render EDIT BLOG
+//* @route GET  /blogs/:id/EDIT
+//* @access PRIVATE
 
 exports.renderEditBlog = async (req, res, next) => {
     try {
@@ -171,14 +106,14 @@ exports.renderEditBlog = async (req, res, next) => {
             query
         })
     } catch (err) {
-next(err)
+        next(err)
     }
 }
 
 
-// @desc PUT BLOG
-// @route PUT /blogs/:id
-// @access PRIVATE
+//* @desc PUT BLOG
+//* @route PUT /blogs/:id
+//* @access PRIVATE
 
 exports.updateBlog = async (req, res, next) => {
     try {
@@ -193,29 +128,32 @@ exports.updateBlog = async (req, res, next) => {
             await blog.save();
             res.redirect('/blogs')
         } else {
-            await Blogs.findByIdAndUpdate(req.params.id, req.body, {
-                new: true,
-                runValidators: true
-            })
+            const blog = await Blogs.findById(req.params.id);
+            const {
+                title,
+                headline,
+                description
+            } = req.body
+            blog.title = title
+            blog.headline = headline
+            blog.description = description
+            await blog.save();
             res.redirect('/blogs')
         }
-
 
     } catch (err) {
         next(err)
     }
 }
 
-// @desc DELETE BLOG
-// @route DELETE /blogs/:id
-// @access PRIVATE
+//* @desc DELETE BLOG
+//* @route DELETE /blogs/:id
+//* @access PRIVATE
 
 exports.deleteBlog = async (req, res, next) => {
     try {
         await Blogs.findByIdAndDelete(req.params.id)
         res.redirect('/blogs')
-
-
     } catch (err) {
         next(err)
     }

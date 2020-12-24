@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
 });
 
 
-// ecnrpty pass using bcrypt
+//* ecnrpty pass using bcrypt
 
 userSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt(10);
@@ -37,7 +37,7 @@ userSchema.pre('save', async function (next) {
 })
 
 
-// match user entered pass to hash pass in database
+//* match user entered pass to hash pass in database
 
 userSchema.methods.matchPassword = async function (enteredPass) {
     return await bcrypt.compare(enteredPass, this.password);

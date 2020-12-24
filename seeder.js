@@ -2,22 +2,26 @@ const fs = require('fs');
 const connectDB = require('./config/db');
 const Blogs = require('./models/blogs')
 const User = require('./models/user')
+const dotenv = require('dotenv');
+dotenv.config({ path: './config/config.env'});
+require('dotenv').config()
 
-
-//connect to db
+//*connect to db
 connectDB();
 
-//read data file
+//*read data file
 const blog = JSON.parse(
     fs.readFileSync(`${__dirname}/_data/blogs.json`, 'utf-8')
 )
-const user = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/user.json`, 'utf-8')
-)
+const user = {
+    name: process.env.NAME,
+    email: process.env.EMAIL,
+    password: process.env.PASSWORD
+    }
 
 
 
-//import into DB
+//*import into DB
 
 const importData = async () =>{
     try {
@@ -42,7 +46,7 @@ const deleteData = async () =>{
     }
 }
 
-//call function default node process
+//*call function default node process
 if(process.argv[2] === 'install'){
     importData();
 } else if (process.argv[2] === 'delete') {
