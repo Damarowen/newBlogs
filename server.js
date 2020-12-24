@@ -8,6 +8,7 @@ const methodOverride = require("method-override")
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const errorHandler = require('./middleware/error')
+const ErrorResponse = require('./utils/errorResponse');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env'});
 
@@ -55,6 +56,10 @@ app.use('/' , authRouter)
 
 // ** important to use this below router
 app.use(errorHandler)
+
+app.all('*', (req, res, next) => {
+    res.status('404').render('404')
+})
 
 app.listen(
     PORT, console.log(`server runnin on ${PORT}`)

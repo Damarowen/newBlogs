@@ -29,8 +29,13 @@ exports.Login = async (req, res, next) => {
         const user = await User.findOne({
             name
         })
+
+        // Validate emil & password
+        if (!name || !password) {
+            return next(new ErrorResponse('Please provide an name and password', 400));
+        }
         if (!user) {
-            return next(new ErrorResponse('invalid credentials', 401))
+            return next(new ErrorResponse('User Not Found', 401))
         };
         req.session.user_id = user._id
         req.session.username = user.name
@@ -104,16 +109,16 @@ exports.AllBlogs = async (req, res, next) => {
 exports.showBlog = async (req, res, next) => {
     try {
         const query = await Blogs.findById(req.params.id)
-        if(!query){
+        if (!query) {
             return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404))
         }
-        
+
         res.render('./blogs/show', {
             query
         })
-        
+
     } catch (err) {
-       next(err)
+        next(err)
 
     }
 }
@@ -159,15 +164,14 @@ exports.newBlog = async (req, res, next) => {
 exports.renderEditBlog = async (req, res, next) => {
     try {
         const query = await Blogs.findById(req.params.id)
-        if(!query){
+        if (!query) {
             return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404))
         }
         await res.render("./blogs/edit", {
             query
         })
     } catch (err) {
-        return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404))
-
+next(err)
     }
 }
 

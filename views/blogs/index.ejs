@@ -20,6 +20,8 @@
 
 
 <section id="body">
+    <!-- * if query not 0 -->
+    <% if(query.length != 0) { %> 
     <% for(const x of query){ %>
     <div id="post">
         <div class="post-head">
@@ -45,10 +47,13 @@
                 <button class="waves-effect waves-light btn orange">Delete</button>
             </form>
             <% } %>
-
         </div>
     </div>
     <% }   %>
+    <!-- * if there is nothing to display -->
+    <% } else {  %>
+<h4 style="color: gray; padding: 20px;">There is nothing To display....</h4>
+        <% } %> 
 </section>
 
 <section id="about" class="container">
@@ -91,12 +96,18 @@
 </section>
 
 <ul class="pagination">
-    <% if(page > 0) { %>
+
+    <!-- * Cursor Left -->
+     <% if( page > 0  && page != 2 ) { %>
     <li><a href="/blogs?page=<%=parseInt(page) - 1%>"><i class="material-icons">chevron_left</i></a></li>
+    <% } else if (page == 2) { %>
+    <li><a href="/blogs"><i class="material-icons">chevron_left</i></a></li>
     <% } else { %>
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <% } %>
+    <% } %> 
 
+
+    <!-- * Page Number -->
     <li class="waves-effect page active"><a href="/blogs">1</a></li>
     <% if(totalPost > 2 || totalPost > 3)  { %>
     <li class="waves-effect page"><a href="/blogs?page=2">2</a></a></li>
@@ -110,8 +121,12 @@
     <% if(totalPost > 8 || totalPost > 9) { %>
     <li class="waves-effect page"><a href="/blogs?page=5">5</a></li>
     <% } %>
+
+    <!-- * Cursor Right -->
     <!-- * no query page -->
-    <% if(!page ) { %>
+    <% if(!page && totalPost <= 2 ) { %>
+    <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+    <% } else if (!page && totalPost > 2  ) { %>
     <li><a href="/blogs?page=2"><i class="material-icons">chevron_right</i></a></li>
     <!-- * use remainder, if end and totalremainder 1 or equal disabled nav,  -->
     <% } else if (endIndex % totalPost == 1  || endIndex == totalPost ) { %>
