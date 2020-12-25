@@ -21,6 +21,14 @@ a {
     color: inherit;
 }
 
+.post-desc a {
+    color: blue;
+}
+
+.post-desc pre {
+background-color: rgb(238, 238, 238);
+padding: 20px;}
+
 section {
     padding-top: 1vw;
     padding-bottom: 1vw;
@@ -208,13 +216,14 @@ blockquote {
 
 /* * avatar section */
 
-#avatar>h5 {
+#avatar>h4 {
+    padding-top: 30px;
     color: gray;
 }
 
 
 #avatar>img {
-    height: 16vh !important;
+    height: 20vh !important;
 }
 
 
