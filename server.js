@@ -57,6 +57,12 @@ app.use('/blogs' , blogsRouter)
 const authRouter = require('./router/auth');
 app.use('/' , authRouter)
 
+//* auto to blogs
+app.get('/', (req,res) => {
+    res.redirect('/blogs')
+})
+
+
 // ** important to use this below router
 app.use(errorHandler)
 
