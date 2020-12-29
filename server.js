@@ -5,7 +5,7 @@ const path = require('path')
 const app = express();
 const mongoose = require("mongoose");
 const connectDB = require('./config/db');
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const session = require('express-session');
@@ -21,7 +21,7 @@ app.locals.moment = require('moment')
 // * Express Session
 
 const sessionConfig = {
-    secret: 'thisshouldbeabettersecret!',
+    secret: process.env.SECRET || 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true
 }
