@@ -10,6 +10,15 @@ body {
     flex-direction: column;
 }
 
+/* * for responsive */
+html{
+    width: 100%;
+}
+
+.login{
+    padding-top: 30px;
+}
+
 /* * below is for sticky footer */
 
 main {
