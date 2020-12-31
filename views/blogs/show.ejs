@@ -10,7 +10,7 @@
         <h2 class="post-head-date"> <%= moment(query.createdAt).format("D MMMM YYYY"); %> </h2>
     </div>
     <div class="post-body">
-        <img class="responsive-img" src="/<%= query.image %>" alt="">
+        <img class="responsive-img" src="<%= query.image.url %>" alt="">
     </div>
     <div class="post-headline">
         <blockquote class="left-align">
