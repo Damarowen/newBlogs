@@ -18,7 +18,6 @@ exports.AllBlogs = async (req, res, next) => {
         const startIndex = (page - 1) * limitPost;
         const endIndex = page * limitPost;
 
-
         const totalPost = await Blogs.countDocuments();
 
         const data = await Blogs.find({}).skip(startIndex).limit(limitPost).sort({
