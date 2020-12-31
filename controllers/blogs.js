@@ -74,7 +74,7 @@ exports.renderNewBlog = async (req, res, next) => {
 exports.newBlog = async (req, res, next) => {
     try {
         if (req.file) {
-            const file = `uploads/${req.file.filename}`
+            const file = `img/${req.file.filename}`
             const blog = new Blogs(req.body)
             blog.image = file
             await blog.save();
@@ -119,7 +119,7 @@ exports.updateBlog = async (req, res, next) => {
     try {
 
         if (req.file) {
-            const file = `uploads/${req.file.filename}`
+            const file = `img/${req.file.filename}`
             const blog = await Blogs.findByIdAndUpdate(req.params.id, req.body, {
                 new: true,
                 runValidators: true
