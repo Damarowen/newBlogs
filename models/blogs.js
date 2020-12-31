@@ -14,8 +14,8 @@ const BlogsSchema = new mongoose.Schema({
         required: [true, 'Please Add Title'],
     },
     image: {
-        type: String,
-        required: [true, 'Please Add Image'],
+        url: String,
+        filename: String,
     },
     headline: {
         type: String,

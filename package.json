@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Damarowen/newBlogs#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "cloudinary": "^1.23.0",
     "dompurify": "^2.2.6",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
@@ -29,6 +30,7 @@
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
     "mongoose": "^5.11.7",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0"
   }
 }

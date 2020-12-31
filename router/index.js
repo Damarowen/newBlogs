@@ -3,20 +3,23 @@ const router = express.Router();
 const path = require('path');
 const multer = require('multer')
 const { protect } = require('../middleware/auth');
+const { storage } = require('../cloudinary/config');
+const upload = multer({ storage });
 
 
-//* Set The Storage Engine
-const storage = multer.diskStorage({
-    destination: './public/img/',
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
+//** below is for production only without cloudinary */
+// //* Set The Storage Engine
+// const storage = multer.diskStorage({
+//     destination: './public/img/',
+//     filename: function (req, file, cb) {
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
 
-//* Init Upload
-const upload = multer({
-    storage: storage
-})
+// //* Init Upload
+// const upload = multer({
+//     storage: storage
+// })
 
 
 //* call controllers

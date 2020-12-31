@@ -1,5 +1,7 @@
 const Blogs = require('../models/blogs')
 const ErrorResponse = require('../utils/errorResponse');
+const { cloudinary } = require("../cloudinary/config");
+
 
 
 
@@ -74,10 +76,12 @@ exports.renderNewBlog = async (req, res, next) => {
 exports.newBlog = async (req, res, next) => {
     try {
         if (req.file) {
-            const file = `img/${req.file.filename}`
+            const file = { url : req.file.path, filename : req.file.filename}
             const blog = new Blogs(req.body)
             blog.image = file
             await blog.save();
+            console.log(file)
+            console.log(req.file)
             res.redirect('/blogs')
         } else {
             const blog = new Blogs(req.body)
@@ -118,15 +122,19 @@ exports.renderEditBlog = async (req, res, next) => {
 exports.updateBlog = async (req, res, next) => {
     try {
 
-        if (req.file) {
-            const file = `img/${req.file.filename}`
+          if (req.file) {
+            // const file = `img/${req.file.filename}`
+            const file = { url : req.file.path, filename : req.file.filename}
             const blog = await Blogs.findByIdAndUpdate(req.params.id, req.body, {
                 new: true,
                 runValidators: true
             })
-            blog.image = file
-            await blog.save();
-            res.redirect('/blogs')
+            const olderFile = blog.image.filename
+           await cloudinary.uploader.destroy(olderFile, () => {
+                console.log(`${olderFile} delete`) });
+              blog.image = file
+              await blog.save();
+              res.redirect('/blogs')
         } else {
             const blog = await Blogs.findById(req.params.id);
             const {
@@ -152,6 +160,10 @@ exports.updateBlog = async (req, res, next) => {
 
 exports.deleteBlog = async (req, res, next) => {
     try {
+        const  blog  = await Blogs.findById(req.params.id)
+        const olderFile = blog.image.filename
+        await cloudinary.uploader.destroy(olderFile, () => {
+             console.log(`${olderFile} delete`) });
         await Blogs.findByIdAndDelete(req.params.id)
         res.redirect('/blogs')
     } catch (err) {

@@ -30,7 +30,7 @@
             <h2 class="post-head-date"> <%= moment(x.createdAt).format("D MMMM YYYY"); %> </h2>
         </div>
         <div class="post-body">
-            <img class="responsive-img" src="/<%= x.image %>" alt="">
+            <img class="responsive-img" src="<%= x.image.url %>" alt="">
         </div>
         <div class="post-desc">
             <blockquote class="left-align">
