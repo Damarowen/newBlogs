@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env'});
 require('dotenv').config()
 
-const dbUrl = 'mongodb://localhost:/newblogs';
+const dbUrl = process.env.DATABASE || 'mongodb://localhost:/newblogs';
 
 const connectDB = async () => {
     const conn = await mongoose.connect(dbUrl, {
