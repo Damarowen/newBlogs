@@ -11,17 +11,14 @@ body {
 }
 
 /* * for responsive */
-html{
+html {
     width: 100%;
 }
 
-.login{
+.login {
     padding-top: 30px;
 }
 
-.post-body img {
-    max-height: 70vh;
-}
 
 /* * below is for sticky footer */
 
@@ -34,13 +31,38 @@ a {
     color: inherit;
 }
 
+.post-body img {
+    max-height: 70vh;
+    max-width: 100%;
+}
+
+.post-desc {
+    font-size: 1.7em;
+    line-height: 1.2;
+    color: black;
+    padding: 15px;
+    text-align: justify;
+}
+
+
+@media (max-width: 400px) {
+    .post-desc {
+        font-size: 1.4em;
+        padding: 5px;
+    }
+}
+
 .post-desc a {
     color: blue;
 }
 
 .post-desc pre {
-background-color: rgb(238, 238, 238);
-padding: 20px;}
+    padding: 0.1em 0.5em 0.3em 0.7em;
+    border-left: 11px solid #ccc;
+    margin: 1.7em 0 1.7em 0.3em;
+    overflow: auto;
+}
+
 
 section {
     padding-top: 1vw;
@@ -163,13 +185,6 @@ nav #username {
 
 }
 
-.post-desc {
-    font-size: 1.7em;
-    line-height: 1.2;
-    color: black;
-    padding: 15px;
-    text-align: justify;
-}
 
 
 blockquote {
@@ -236,7 +251,7 @@ blockquote {
 
 
 #avatar>img {
-    height: 20vh !important;
+    max-height: 20vh !important;
 }
 
 

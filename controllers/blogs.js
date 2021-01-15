@@ -133,8 +133,8 @@ exports.updateBlog = async (req, res, next) => {
                 console.log(`${olderFile} delete`) });
               blog.image = file
               await blog.save();
-              res.redirect('/blogs')
-        } else {
+              return res.redirect(`/blogs/${req.params.id}`)
+            } else {
             const blog = await Blogs.findById(req.params.id);
             const {
                 title,
@@ -145,7 +145,7 @@ exports.updateBlog = async (req, res, next) => {
             blog.headline = headline
             blog.description = description
             await blog.save();
-            res.redirect('/blogs')
+            return res.redirect(`/blogs/${req.params.id}`)
         }
 
     } catch (err) {
