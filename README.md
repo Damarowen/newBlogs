@@ -13,4 +13,4 @@ this web build using
 
 and other tiny stuff
 
-[demo](damarowen.blog)
+[DEMO](https://damarowen.blog)
