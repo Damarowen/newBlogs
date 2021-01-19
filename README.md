@@ -10,6 +10,7 @@ this web build using
 3. Cloudinary with multer
 4. Bcrypt
 5. Jsdom and Dompurify
+6. MongoDB with Mongoose
 
 and other tiny stuff
 
