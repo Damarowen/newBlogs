@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
   //* url adress bar */
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const pages = urlParams.get('page')
+  const pages = urlParams.get('page') //* output number pages i.e 1,2,3
+
 
   //* catch all page class
   let page = document.querySelectorAll('.page')
@@ -22,10 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
   let pageOne = document.querySelector('.page')
 
   //* if in url has a page query
+
+
+
+
   if (pages) {
     for (x of page) {
-      //** add class active */
-      x.classList.add("active")
+     
+      if (x.innerText == pages) {
+        //** add class active */
+        x.classList.add("active")
+      }
 
       //** remove class active in page one */
       pageOne.classList.remove("active")
