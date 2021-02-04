@@ -28,16 +28,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   if (pages) {
-    for (x of page) {
-     
-      if (x.innerText == pages) {
-        //** add class active */
-        x.classList.add("active")
-      }
 
-      //** remove class active in page one */
-      pageOne.classList.remove("active")
-    }
+    const arr = Array.from(page)
+    arr.map(x => {
+        if (x.innerText == pages) {
+           //** add class active */
+
+          x.classList.add("active")
+        }
+          //** remove class active in page one */
+
+        pageOne.classList.remove("active")
+      })
 
   }
 
